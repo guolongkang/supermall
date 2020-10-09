@@ -1,17 +1,74 @@
 <template>
 <div id="home">
-  <nav-bar>
-    <div slot="center">广场</div>
-  </nav-bar>
-  <div class="swiper">
-    <swiper/>
-  </div>
+  <nav-bar><div slot="center">广场</div></nav-bar>
+
+  <swiper :banner="banner"></swiper>
+
+  <recommend-view :recommend="recommend"></recommend-view>
+
+  <feature-view></feature-view>
+
+  <tab-control class="tab-control" :title="['流行','新款','精选']"></tab-control>
+
+
+  <ul>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+    <li>5</li>
+  </ul>
 </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
 import Swiper from 'components/common/swiper/swiper'
+import TabControl from 'components/content/tabControl/TabControl'
+
+import RecommendView from './childcomps/RecommendView'
+import FeatureView from './childcomps/FeatureView'
+
 import {getHomeMultidata} from 'network/home'
 
 export default {
@@ -26,12 +83,15 @@ export default {
   },
   components: {
     NavBar,
-    Swiper
+    Swiper,
+    RecommendView,
+    FeatureView,
+    TabControl
   },
   created() {
     // 请求多个数据
     getHomeMultidata().then(res => {
-      // console.log(res);
+      console.log(res);
       this.banner = res.data.banner,
       this.dKeyword = res.data.dKeyword,
       this.keywords = res.data.keywords,
@@ -42,8 +102,11 @@ export default {
 </script>
 
 <style >
-.swiper {
-  /* position:absolute; */
-  height: 150px;
+#home {
+  margin-top: 44px 0px;
+}
+.tab-control {
+  position:sticky;
+  top: 44px;
 }
 </style>
